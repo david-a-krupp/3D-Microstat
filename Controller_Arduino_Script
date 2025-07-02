@@ -1,0 +1,65 @@
+#include <AccelStepper.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+// Pin Definitions
+#define MOTOR1_STEP_PIN 2   // Large axis
+#define MOTOR1_DIR_PIN 3
+#define MOTOR2_STEP_PIN 4   // Small axis
+#define MOTOR2_DIR_PIN 5
+#define BUTTON_PIN 7        // Start/Stop button
+
+// LCD Setup
+LiquidCrystal_I2C lcd(0x27, 16, 2);  // Change 0x27 if needed
+
+// Stepper Setup
+AccelStepper motor1(AccelStepper::DRIVER, MOTOR1_STEP_PIN, MOTOR1_DIR_PIN);
+AccelStepper motor2(AccelStepper::DRIVER, MOTOR2_STEP_PIN, MOTOR2_DIR_PIN);
+bool running = false;
+
+void setup() {
+  // Initialize LCD
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("Microstat Ready");
+
+  // Button setup
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+
+  // Set nema 17 motor speeds for 1/16 microstepping
+  // Large axis: 10 RPM => ~533 steps/sec
+  // Small axis: 4.5 RPM => ~240 steps/sec
+  motor1.setMaxSpeed(533);
+  motor1.setSpeed(533);
+
+  motor2.setMaxSpeed(240);
+  motor2.setSpeed(240);
+
+  lcd.setCursor(0, 1);
+  lcd.print("Press Button...");
+}
+
+void loop() {
+  static bool lastButtonState = HIGH;
+  bool buttonState = digitalRead(BUTTON_PIN);
+
+  // Toggle running state on button press
+  if (lastButtonState == HIGH && buttonState == LOW) {
+    running = !running;
+
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Microstat Ready");
+    lcd.setCursor(0, 1);
+    lcd.print(running ? "Running..." : "Stopped");
+
+    delay(300); // debounce
+  }
+  lastButtonState = buttonState;
+
+  if (running) {
+    motor1.runSpeed();
+    motor2.runSpeed();
+  }
+}
