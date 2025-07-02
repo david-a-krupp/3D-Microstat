@@ -1,5 +1,5 @@
 # 3D-Microstat
-Open-source 3D Clinostat design inspired by iGEM Concordia. This Clinostat was designed by a team of University of Georgia students for the Small Satellite Research Laboratory to support space biology research and microgravity experiments.
+Open-source 3D Clinostat design inspired by iGEM Concordia. This Clinostat was designed by a team of University of Georgia students for the Small Satellite Research Laboratory to support space biology research and microgravity experiments. This final product occupies very little space compared to most other COTS (Commercial-off-the-Shelf) Clinostats, taking up roughly 350 x 300 x 320 mm of space when fully assembled. 
 <img src="Microstat_Assembly_v2.png" alt="Microstat Assembly" width="1400"/>
 Build Instructions - 
 
