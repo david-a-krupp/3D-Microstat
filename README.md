@@ -6,6 +6,7 @@ Open-source 3D Clinostat design inspired by iGEM Concordia. This Clinostat was d
 This CLinostat build requires a degree of project-specific tailoring. The 140 x 140 mm payload platform is a hard limit for this form factor without increasing the size of the swingarm. The weight restriction varies by geometry and how far from the platform's surface your payload protrudes. The given platform geometry (STL, CAD file) includes M3 fastener holes that can be used for either designing your own mount to add in addition, OR to temporarily secure your payload to the platform. 
 
 <img src="Microstat_Assembly_v2.png" alt="Microstat Assembly" width="1400"/>
+
 **Build Instructions -** 
 
 Begin by preparing all of the 3D printed parts required for the Microstat. Once the parts are printed, inspect them for any defects or rough edges and carefully remove any excess material or supports. Assemble the main frame by connecting the printed arm, brackets, and base structure as shown in the CAD assembly image. Make sure all moving parts rotate freely and align properly before tightening any fasteners. The 20.5 mm motor should be mounted to the arm before mounting the arm to the frame. Once the 20.5 mm motor is secured, run its 4 wires into the channel in the arm and out the adjacent side. These wires will exit the main assembly through the long rod towards the slip ring mount. 
