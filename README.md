@@ -2,6 +2,7 @@
 Open-source 3D Clinostat design inspired by iGEM Concordia. This Clinostat was designed by a team of University of Georgia students for the Small Satellite Research Laboratory to support space biology research and microgravity experiments.
 <img src="Microstat_Assembly_v2.png" alt="Microstat Assembly" width="1400"/>
 Build Instructions - 
+
 Begin by preparing all of the 3D printed parts required for the Microstat. Once the parts are printed, inspect them for any defects or rough edges and carefully remove any excess material or supports. Assemble the main frame by connecting the printed arm, brackets, and base structure as shown in the CAD assembly image. Make sure all moving parts rotate freely and align properly before tightening any fasteners. The 20.5 mm motor should be mounted to the arm before mounting the arm to the frame. Once the 20.5 mm motor is secured, run its 4 wires into the channel in the arm and out the adjacent side. These wires will exit the main assembly through the long rod towards the slip ring mount. 
 
 Next, mount the larger stepper motor to the main axis bracket using the appropriate screws and ensure it is securely fixed in place. Once both motors are mounted, connect the rotating arm to the main axis so that the two axes of rotation are perpendicular, allowing for true 3D rotation. Adjust any extensions or brackets if needed to minimize friction and wobble.
