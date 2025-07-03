@@ -10,7 +10,7 @@
 #define BUTTON_PIN 7        // Start/Stop button
 
 // LCD Setup
-LiquidCrystal_I2C lcd(0x27, 16, 2);  // Change address if needed
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 // Stepper Setup
 AccelStepper motor1(AccelStepper::DRIVER, MOTOR1_STEP_PIN, MOTOR1_DIR_PIN);
