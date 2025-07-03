@@ -10,12 +10,15 @@
 #define BUTTON_PIN 7        // Start/Stop button
 
 // LCD Setup
-LiquidCrystal_I2C lcd(0x27, 16, 2);  // Change 0x27 if needed
+LiquidCrystal_I2C lcd(0x27, 16, 2);  // Change address if needed
 
 // Stepper Setup
 AccelStepper motor1(AccelStepper::DRIVER, MOTOR1_STEP_PIN, MOTOR1_DIR_PIN);
 AccelStepper motor2(AccelStepper::DRIVER, MOTOR2_STEP_PIN, MOTOR2_DIR_PIN);
+
+// State
 bool running = false;
+unsigned long startTime = 0;
 
 void setup() {
   // Initialize LCD
@@ -23,11 +26,13 @@ void setup() {
   lcd.backlight();
   lcd.setCursor(0, 0);
   lcd.print("Microstat Ready");
+  lcd.setCursor(0, 1);
+  lcd.print("Press Button...");
 
   // Button setup
   pinMode(BUTTON_PIN, INPUT_PULLUP);
 
-  // Set nema 17 motor speeds for 1/16 microstepping
+  // Set motor speeds for 1/16 microstepping
   // Large axis: 10 RPM => ~533 steps/sec
   // Small axis: 4.5 RPM => ~240 steps/sec
   motor1.setMaxSpeed(533);
@@ -35,9 +40,6 @@ void setup() {
 
   motor2.setMaxSpeed(240);
   motor2.setSpeed(240);
-
-  lcd.setCursor(0, 1);
-  lcd.print("Press Button...");
 }
 
 void loop() {
@@ -48,11 +50,20 @@ void loop() {
   if (lastButtonState == HIGH && buttonState == LOW) {
     running = !running;
 
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Microstat Ready");
-    lcd.setCursor(0, 1);
-    lcd.print(running ? "Running..." : "Stopped");
+    if (running) {
+      // Just started: record time
+      startTime = millis();
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Microstat Running");
+    } else {
+      // Stopped: show ready screen again
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Microstat Ready");
+      lcd.setCursor(0, 1);
+      lcd.print("Press Button...");
+    }
 
     delay(300); // debounce
   }
@@ -61,5 +72,28 @@ void loop() {
   if (running) {
     motor1.runSpeed();
     motor2.runSpeed();
+
+    // Calculate elapsed time in ms
+    unsigned long elapsedMillis = millis() - startTime;
+
+    // Convert to days, hours, mins, secs
+    unsigned long totalSecs = elapsedMillis / 1000;
+    unsigned int days = totalSecs / 86400;
+    unsigned int hours = (totalSecs % 86400) / 3600;
+    unsigned int mins = (totalSecs % 3600) / 60;
+    unsigned int secs = totalSecs % 60;
+
+    // Display on LCD line 2
+    lcd.setCursor(0, 1);
+    lcd.print(days);
+    lcd.print("d ");
+    if (hours < 10) lcd.print('0');
+    lcd.print(hours);
+    lcd.print(":");
+    if (mins < 10) lcd.print('0');
+    lcd.print(mins);
+    lcd.print(":");
+    if (secs < 10) lcd.print('0');
+    lcd.print(secs);
   }
 }
