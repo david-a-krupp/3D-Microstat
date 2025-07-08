@@ -7,7 +7,7 @@ This Clinostat build requires a degree of project-specific tailoring. The 140 x 
 
 <table>
   <tr>
-    <td><img src="Microstat_Assembly_v2.png" alt="Microstat CAD Assembly" width="400"/></td>
+    <td><img src="Microstat_Assembly_v2.png" alt="Microstat CAD Assembly" width="500"/></td>
     <td><img src="assembled_microstat.jpg" alt="Assembled Microstat" width="400"/></td>
   </tr>
 </table>
