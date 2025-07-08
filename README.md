@@ -5,7 +5,12 @@ Open-source 3D Clinostat design inspired by iGEM Concordia. This Clinostat was d
 
 This Clinostat build requires a degree of project-specific tailoring. The 140 x 140 mm payload platform is a hard limit for this form factor without increasing the size of the swingarm. The weight restriction varies by geometry and how far from the platform's surface your payload protrudes. The given platform geometry (STL, CAD file) includes M3 fastener holes that can be used for either designing your own mount to add in addition, OR to temporarily secure your payload to the platform. The given Bill of Materials includes all resources used to build the model you see in the CAD model, and pictures/media. I am sure there are cheaper alternatives available from places such as McMaster-Carr that do not leave much excess hardware. Again, this is just what I used to build this at a decent cost. For any recommendations regarding better part selections, please commit an updated file with the updated part description and links so that we can continuously improve this design. Thanks! 
 
-<img src="Microstat_Assembly_v2.png" alt="Microstat Assembly" width="1400"/>
+<table>
+  <tr>
+    <td><img src="Microstat_Assembly_v2.png" alt="Microstat CAD Assembly" width="400"/></td>
+    <td><img src="assembled_microstat.jpg" alt="Assembled Microstat" width="400"/></td>
+  </tr>
+</table>
 
 **Build Instructions -** 
 
